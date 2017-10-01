@@ -11,18 +11,16 @@
 <script src="js/leaflet.awesome-markers.js"></script>
 
 
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
-
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
 
 
 </head>
 <style>
-  #map { 
+  #map {
     width: 580px;
     height: 580px;
     box-shadow: 5px 5px 5px #888;
@@ -30,57 +28,75 @@
 </style>
 </html>
 <body>
-	<div id="map"></div>
+        <div id="map"></div>
 
 <script>
-	var cities = L.layerGroup();
 
+// var Mapa y Capas
 
-	var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-                '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-                'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-        mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+var cities = L.layerGroup();
 
-        var grayscale   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
-        streets  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
+var mbAttr = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+    '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+    'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
 
+var grayscale   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
+    streets  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
 
-	var map = L.map('map', { zoomControl:false, layers: [streets, cities] }).
-  	setView([37.19001, -3.62543],
- 	17);
-
-
-        var capasBase = {
-                "Gris": grayscale,
-                "Distritos": streets
-        };
-
-	var overlays = {
-        };
-
-	
-
-	L.control.layers(capasBase, overlays).addTo(map);
-	map.dragging.disable(capasBase);
-	L.marker([37.19001, -3.62543],{draggable: false}).addTo(map);
-
-
-
+// Mapa
 
 var map = L.map('map', { zoomControl:false, layers: [streets, cities] }).
-     setView([37.19001, -3.62543],
-     17);
-L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-maxZoom: 19
-}).addTo(map);
-L.control.scale().addTo(map);
-L.marker([37.19001, -3.62543],{draggable: false}).addTo(map);
-map.dragging.disable();
+  setView([37.19001, -3.62543],
+ 17);
 
 
+// Capas gris y distritos
+
+var capasBase = {
+        "Gris": grayscale,
+        "Distritos": streets
+  };
+
+var overlays = {
+  };
 
 
+L.control.layers(capasBase, overlays).addTo(map);
+map.dragging.disable(capasBase);
+
+// Establecimientos
+
+// Establecimientos
+
+var LeafIcon = L.Icon.extend({
+        options: {
+        }
+});
+
+var bar = new LeafIcon({iconUrl: '/home/daniel/leaflet/imagenes/bar.png'}),
+    restaurante = new LeafIcon({iconUrl: '/home/daniel/leaflet/imagenes/restaurante.png'}),
+    cafeteria = new LeafIcon({iconUrl: '/home/daniel/leaflet/imagenes/cafeteria.png'});
+
+
+// Marcadores
+
+L.marker([37.19011, -3.62569],{icon: bar}).addTo(map).bindPopup('<p><h2>Bar</h2></p><p>Precios</p>'),
+L.marker([37.19051, -3.62523],{icon: restaurante}).addTo(map).bindPopup('This is Denver, CO.'),
+L.marker([37.19021, -3.62563],{icon: bar}).addTo(map).bindPopup('This is Aurora, CO.'),
+L.marker([37.19101, -3.62523],{icon: cafeteria}).addTo(map).bindPopup('This is Golden, CO.');
+
+// Bloquear zoom
+
+map.once('focus', function() { map.scrollWheelZoom.enable(); });
+map.on('click', function() {
+  if (map.scrollWheelZoom.enabled()) {
+    map.scrollWheelZoom.disable();
+    }
+    else {
+    map.scrollWheelZoom.enable();
+    }
+  });
 
 </script>
 
