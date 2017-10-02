@@ -21,8 +21,8 @@
 </head>
 <style>
   #map {
-    width: 580px;
-    height: 580px;
+    width: 780px;
+    height: 780px;
     box-shadow: 5px 5px 5px #888;
  }
 </style>
@@ -32,7 +32,7 @@
 
 <script>
 
-// var Mapa y Capas
+// variables Mapa y Capas
 
 var cities = L.layerGroup();
 
@@ -48,7 +48,7 @@ var grayscale   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
 
 var map = L.map('map', { zoomControl:false, layers: [streets, cities] }).
   setView([37.19001, -3.62543],
- 17);
+ 16);
 
 
 // Capas gris y distritos
@@ -64,8 +64,6 @@ var overlays = {
 
 L.control.layers(capasBase, overlays).addTo(map);
 map.dragging.disable(capasBase);
-
-// Establecimientos
 
 // Establecimientos
 
@@ -85,6 +83,14 @@ L.marker([37.189470, -3.625434],{icon: restaurante}).addTo(map).bindPopup('<p><h
 L.marker([37.190042, -3.625178],{icon: bar}).addTo(map).bindPopup('<p><h2>Bar El Gallo</h2><img src="/home/daniel/leaflet/imagenes/gallo.png" width="100" height="100"/></p><hr><p>Sin valoración.</p>'),
 L.marker([37.189700, -3.626201],{icon: bar}).addTo(map).bindPopup('<p><h2>Deluxe tapas bar granada</h2><img src="/home/daniel/leaflet/imagenes/deluxe.png" width="100" height="100"/></p><hr><p>Valoración: 3,9 <img src="/home/daniel/leaflet/imagenes/estrella.jpeg" width="20" height="20"/></p>'),
 L.marker([37.190100, -3.624891],{icon: cafeteria}).addTo(map).bindPopup('<p><h2>Cafeteria Churreria ADRIANA</h2><img src="/home/daniel/leaflet/imagenes/adriana.png" width="100" height="100"/></p><hr><p>Valoración: 4,7 <img src="/home/daniel/leaflet/imagenes/estrella.jpeg" width="20" height="20"/></p>'),
+
+L.marker([37.189964, -3.629997],{icon: cafeteria}).addTo(map).bindPopup('<p><h2>Café-Bar Casa Perla</h2><img src="/home/daniel/leaflet/imagenes/perla.png" width="100" height="100"/></p><hr><p>Valoración: 4,6 <img src="/home/daniel/leaflet/imagenes/estrella.jpeg" width="20" height="20"/></p>'),
+L.marker([37.191778, -3.624747],{icon: bar}).addTo(map).bindPopup('<p><h2>Bar Granollers</h2><img src="/home/daniel/leaflet/imagenes/perla.png" width="100" height="100"/></p><hr><p>Valoración: 4,6 <img src="/home/daniel/leaflet/imagenes/estrella.jpeg" width="20" height="20"/></p>'),
+L.marker([37.192323, -3.628253],{icon: bar}).addTo(map).bindPopup('<p><h2>Cafe-Bar Zeus</h2><img src="/home/daniel/leaflet/imagenes/zeus.png" width="100" height="100"/></p><hr><p>Valoración: 3,8 <img src="/home/daniel/leaflet/imagenes/estrella.jpeg" width="20" height="20"/></p>'),
+L.marker([37.174432, -3.595608],{icon: cafeteria}).addTo(map).bindPopup('<p><h2>Café-Bar Las Mercedes</h2><img src="/home/daniel/leaflet/imagenes/mercedes.png" width="100" height="100"/></p><hr><p>Valoración: 4,3 <img src="/home/daniel/leaflet/imagenes/estrella.jpeg" width="20" height="20"/></p>'),
+L.marker([37.190648, -3.628219],{icon: cafeteria}).addTo(map).bindPopup('<p><h2>Cafetería-Bar El Arenal</h2><img src="/home/daniel/leaflet/imagenes/arenal.png" width="100" height="100"/></p><hr><p>Valoración: 4,1 <img src="/home/daniel/leaflet/imagenes/estrella.jpeg" width="20" height="20"/></p>'),
+L.marker([37.189025, -3.623173],{icon: restaurante}).addTo(map).bindPopup('<p><h2>Mesón-Restaurante "Las Perlas"</h2><img src="/home/daniel/leaflet/imagenes/lasPerlas.png" width="100" height="100"/></p><hr><p>Valoración: 4,6 <img src="/home/daniel/leaflet/imagenes/estrella.jpeg" width="20" height="20"/></p>'),
+
 
 // Bloquear zoom
 
