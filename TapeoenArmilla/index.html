@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    		<title>Mapa Armilla</title>
+    		<meta charset="utf-8" />
+    		<link 
+        		rel="stylesheet" 
+        		href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"
+    		/>
+    		<link
+			rel="stylesheet"
+			href="estilos.css"/>
+    			<!-- Nueva capa -->
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+		<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+	</head>
+	<body>
+		<!-- Los botones que llaman a las funciones del tipo de mapa-->
+		<h1 align="center">Armilla</h1>
+
+		<div align="center">
+			<input type="button" onclick="OtroMapa()" value="Pintura"/>
+			<input type="button" onclick="MapaPrincipal()" value="Mapa principal"/>
+		</div><p/>
+
+		<div id="map" class="centrar"></div>
+
+    		<script
+        		src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js">
+    		</script>
+
+    		<script
+			src="codigo.js">
+    		</script>
+	</body>
+
+</html>
